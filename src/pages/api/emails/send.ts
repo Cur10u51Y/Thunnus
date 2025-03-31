@@ -88,6 +88,7 @@ async function sendMail(
 
     await updateBatchProgress(batchId, true);
   } catch (error: any) {
+    console.log(error);
     await db.collection("phishingUsers").doc(user.id).update({
       "status.emailSended": false,
       "status.emailError": error.message,
