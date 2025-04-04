@@ -12,6 +12,7 @@ interface ImportMetaEnv {
   readonly FIREBASE_AUTH_CERT_URL: string;
   readonly FIREBASE_CLIENT_CERT_URL: string;
   readonly FIREBASE_UNIVERSE_DOMAIN: string;
+  readonly FIREBASE_SERVICE_ACCOUNT: string;
   readonly PROD?: boolean;
 }
 

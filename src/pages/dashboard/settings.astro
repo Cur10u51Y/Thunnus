@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 
 import Layout from "@/layouts/dashboard.astro";
 
@@ -63,6 +64,9 @@ try {
           autoComplete="off"
         />
 
+        <Label htmlFor="secure">Usar SSL/TLS</Label>
+        <Switch client:load checked={smtpConfig?.secure || false} id="secure" />
+
         <div>
           <Button type="submit">Guardar cambios</Button>
         </div>
@@ -79,7 +83,7 @@ try {
 
     const host = (document.getElementById("host") as HTMLInputElement)?.value;
     const port = parseInt(
-      (document.getElementById("port") as HTMLInputElement)?.value
+      (document.getElementById("port") as HTMLInputElement)?.value,
     );
     const username = (document.getElementById("username") as HTMLInputElement)
       ?.value;
@@ -89,7 +93,7 @@ try {
     const data = {
       host,
       port,
-      secure: false,
+      secure: true,
       auth: {
         user: username,
         pass: password,

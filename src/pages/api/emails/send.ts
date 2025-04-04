@@ -65,12 +65,16 @@ async function sendMail(
       },
     });
 
+    console.log("Sending email to: " + user.email);
+
     await sendEmail({
       to: user.email,
       subject: subjectMicrosoft,
       html: htmlContentMicrosoft,
       smtp: smtp,
     });
+
+    console.log("Email sent to: " + user.email);
 
     await db
       .collection("phishingUsers")
@@ -88,7 +92,7 @@ async function sendMail(
 
     await updateBatchProgress(batchId, true);
   } catch (error: any) {
-    console.log(error);
+    console.error("Error al enviar el correo electrónico:", error);
     await db.collection("phishingUsers").doc(user.id).update({
       "status.emailSended": false,
       "status.emailError": error.message,
