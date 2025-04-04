@@ -10,22 +10,7 @@ interface Options {
 
 export async function sendEmail(options: Options) {
     try {
-        const smtpOptions = {
-            host: options.smtp.host,
-            port: 587,
-            secure: false,
-            requireTLS: true,
-            auth: {
-                user: "signup.live.com.no-reply@outlook.com",
-                pass: "jktgbqnrnbmgirzo"
-            },
-            logger: true,
-            tls: {
-                rejectUnauthorized: false
-            },
-        }
-
-        const transporter = nodemailer.createTransport(smtpOptions);
+        const transporter = nodemailer.createTransport(options.smtp);
 
         const response = await transporter.sendMail({
             to: options.to,
